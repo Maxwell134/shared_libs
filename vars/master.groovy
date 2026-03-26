@@ -20,7 +20,7 @@ def call(Map pipelineParams = [:]) {
             stage('Print Values') {
                 steps {
                     echo "Workspace: ${env.WORKSPACE}"
-                    echo "Node: ${env.NODE}"
+                    
                         echo "Image: ${env.DOCKER_IMAGE}"
                     echo "Tag: ${env.DOCKER_TAG}"
                 }
@@ -28,7 +28,7 @@ def call(Map pipelineParams = [:]) {
             stage('login to docker') {
                 steps {
                     script {
-                    def status = dockerLogin()
+                    def status = dockerLogin.loginDocker()
                     if (status) {
                         sh """
                         docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} .
