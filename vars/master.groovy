@@ -31,7 +31,7 @@ def call(Map pipelineParams = [:]) {
                     def status = dockerLogin.loginDocker()
                     if (status) {
                         sh """
-                        docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} .
+                        podman build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} .
                         """
                     } else {
                         error "Docker login failed"
