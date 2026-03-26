@@ -1,13 +1,17 @@
 def call(Map pipelineParams = [:]) {
-
+    def customWs = "/scm/checkout/TIM/${env.JOB_NAME}"
+    
     pipeline {
 
-        agent any
+        agent {
+        node {
+            label 'linux_node'
+            customWorkspace customWs
+             }
+          }
 
-        environment {
-            WORKSPACE = "/scm/checkout/TIM/${JOB_NAME}"
-            NODE = "23222222"
-
+        environment {            
+            
             DOCKER_IMAGE = "${pipelineParams.DOCKER_IMAGE ?: 'nginx'}"
             DOCKER_TAG   = "${pipelineParams.DOCKER_TAG ?: 'latest'}"
         }
