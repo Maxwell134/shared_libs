@@ -1,25 +1,24 @@
 def loginDocker() {
 
     def checkStatus = false
-    withCredentials([usernamePassword (
-        credentialsID: 'loginPassword',
-        usernameVariable: 'username',
-        passwordVariable: 'password'
+
+    withCredentials([usernamePassword(
+        credentialsId: 'loginPassword',
+        usernameVariable: 'USERNAME',
+        passwordVariable: 'PASSWORD'
     )]) {
 
-        def result = sh(script: docker login -u $username -p $password, returnStatus: true).trim()
+        def result = sh(
+            script: "docker login -u $USERNAME -p $PASSWORD",
+            returnStatus: true
+        )
 
         if (result == 0) {
             checkStatus = true
-
-
         } else {
-
             checkStatus = false
         }
-
     }
+
     return checkStatus
-
-
 }
