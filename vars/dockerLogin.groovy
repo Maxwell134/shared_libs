@@ -9,7 +9,7 @@ def loginDocker() {
     )]) {
 
         def result = sh(
-            script: "docker login -u $USERNAME -p $PASSWORD",
+            script: "podman login -u $USERNAME -p $PASSWORD",
             returnStatus: true
         )
 
