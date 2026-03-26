@@ -46,7 +46,9 @@ def call(Map pipelineParams = [:]) {
 
         post {
             always {
+                script {
                 cleanup.cleanupImages()
+             }
             }
         }
     }
