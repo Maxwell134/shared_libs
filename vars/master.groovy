@@ -25,7 +25,7 @@ def call(Map pipelineParams = [:]) {
                 steps {
                     script {
                     def status = dockerLogin()
-                    if (status = true) {
+                    if (status) {
                         sh """
                         docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} .
                         """
