@@ -1,6 +1,6 @@
 def cleanupImages() {
     sh """
-        podman image prune -a -f || true
+        podman system prune -a -f|| true
         podman container prune -f || true
     """
 }
